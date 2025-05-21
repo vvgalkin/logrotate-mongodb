@@ -1,0 +1,5 @@
+- name: Configure logrotate for MongoDB
+  hosts: all
+  become: true
+  roles:
+    - role: /mnt/c/Users/vladi/OneDrive/Документы/Work/Payleer/temp/logrotate-mongodb/roles/configure_logrotate_mongodb

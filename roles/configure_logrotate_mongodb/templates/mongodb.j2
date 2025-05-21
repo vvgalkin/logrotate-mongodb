@@ -1,0 +1,26 @@
+{{ logrotate_mongodb_log_file | default('/var/log/mongodb/mongod.log') }} {
+    {{ logrotate_mongodb_rotate_interval | default('daily') }}
+    rotate {{ logrotate_mongodb_keep_days | default(14) }}
+
+{% if logrotate_mongodb_missingok | default(true) %}
+    missingok
+{% endif %}
+{% if logrotate_mongodb_notifempty | default(true) %}
+    notifempty
+{% endif %}
+{% if logrotate_mongodb_compress | default(true) %}
+    compress
+{% endif %}
+{% if logrotate_mongodb_delaycompress | default(true) %}
+    delaycompress
+{% endif %}
+{% if logrotate_mongodb_copytruncate | default(true) %}
+    copytruncate
+{% endif %}
+{% if logrotate_mongodb_use_su | default(true) %}
+    su {{ logrotate_mongodb_create_owner }} {{ logrotate_mongodb_create_group }}
+{% endif %}
+{% if logrotate_mongodb_create_mode %}
+    create {{ logrotate_mongodb_create_mode }} {{ logrotate_mongodb_create_owner }} {{ logrotate_mongodb_create_group }}
+{% endif %}
+}
