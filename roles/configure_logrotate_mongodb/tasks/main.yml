@@ -10,7 +10,7 @@
     mode: "0755"
 
 - name: Deploy logrotate config for MongoDB
-  template:
-    src: mongodb.j2
+  copy:
+    src: mongodb
     dest: /etc/logrotate.d/mongodb
     mode: "0644"
