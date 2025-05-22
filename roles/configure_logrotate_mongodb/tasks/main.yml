@@ -11,7 +11,7 @@
     mode: "0755"
 
 - name: Deploy logrotate config for MongoDB
-  ansible.builtin.template:
+  template:
     src: mongodb.j2
     dest: /etc/logrotate.d/mongodb
     mode: "0644"
