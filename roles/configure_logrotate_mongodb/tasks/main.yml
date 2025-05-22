@@ -2,7 +2,6 @@
   package:
     name: logrotate
     state: present
-  become: true
 
 - name: Ensure /etc/logrotate.d directory exists
   file:
