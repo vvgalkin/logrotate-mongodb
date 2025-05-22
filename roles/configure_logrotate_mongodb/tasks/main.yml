@@ -1,12 +1,22 @@
----
-- name: Ensure folder /etc/logrotate.d exists
+- name: Gather installed packages
+  ansible.builtin.package_facts:
+    manager: auto
+
+- name: Ensure logrotate is installed (RHEL/CentOS)
+  ansible.builtin.yum:
+    name: logrotate
+    state: present
+  when: logrotate_mongodb_enabled
+  become: true
+
+- name: Ensure /etc/logrotate.d directory exists
   ansible.builtin.file:
     path: /etc/logrotate.d
     state: directory
     mode: "0755"
   when: logrotate_mongodb_enabled
 
-- name: Locate logrotate config file
+- name: Deploy logrotate config for MongoDB
   ansible.builtin.template:
     src: mongodb.j2
     dest: /etc/logrotate.d/mongodb
