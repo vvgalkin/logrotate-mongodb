@@ -2,8 +2,8 @@
   ansible.builtin.package_facts:
     manager: auto
 
-- name: Ensure logrotate is installed (RHEL/CentOS)
-  ansible.builtin.yum:
+- name: Ensure logrotate is installed
+  ansible.builtin.package:
     name: logrotate
     state: present
   when: logrotate_mongodb_enabled
